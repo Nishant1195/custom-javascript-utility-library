@@ -1,4 +1,4 @@
-const {map, filter} = require('./main');
+const {map, filter, reduceed} = require('./main');
 
 describe('Custom map function tests', () => {
 
@@ -80,4 +80,34 @@ describe('Custom filter function tests', () => {
     });
 
 });
+
+describe('Custom reduceed function tests', () => {
+
+    test('Sums all numbers', () => {
+        const arr = [1, 2, 3, 4];
+        expect(reduceed(arr, (acc, curr) => acc + curr, 0)).toBe(10);
+    });
+
+    test('Multiplies all numbers', () => {
+        const arr = [1, 2, 3, 4];
+        expect(reduceed(arr, (acc, curr) => acc * curr, 1)).toBe(24);
+    });
+
+    test('Finds maximum value', () => {
+        const arr = [5, 2, 9, 1];
+        expect(reduceed(arr, (acc, curr) => Math.max(acc, curr))).toBe(9);
+    });
+
+    test('Concatenates strings', () => {
+        const arr = ['Hello', ' ', 'World'];
+        expect(reduceed(arr, (acc, curr) => acc + curr, '')).toBe('Hello World');
+    });
+
+    test('Works without initial value', () => {
+        const arr = [2, 3, 4];
+        expect(reduceed(arr, (acc, curr) => acc + curr)).toBe(9);
+    });
+
+});
+
 
